@@ -1,0 +1,38 @@
+package utilities;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class PrimeNumbersGenerator {
+
+	/*
+	 * Returns an array of prime numbers from 0 up to a maxmimum of the input value
+	 */
+	public Integer[] generatePrimes(int max){
+		ArrayList<Integer> primeNumbers = new ArrayList<Integer>();
+		Boolean[] a = new Boolean[max+1];
+		Arrays.fill(a, true);
+		
+		for (int i = 2; i < Math.sqrt(max+1); i++){
+			if (a[i] == true){
+				int j = (int) Math.pow(i, 2);
+				int iterator = 1;
+				while (j < max+1){
+					a[j] = false;
+					j = (int) Math.pow(i, 2) + iterator*i;
+					iterator++;
+				}
+			}
+			
+		}
+		
+		for (int i = 2; i < a.length; i++){
+			if (a[i] == true) primeNumbers.add(i);
+		}
+		
+		Integer[] primeNumbersArray = primeNumbers.toArray(new Integer[primeNumbers.size()]);
+		return primeNumbersArray;
+		
+	}
+	
+}

@@ -1,0 +1,86 @@
+package problems;
+
+public class ProjectEuler {
+	
+	/*
+	 * Problem 1
+	 * Returns the sum of all numbers from 0 to limit dividible by three or five
+	 */
+	public int sumMultiplesOfThreeAndFive(int limit){
+		int sum = 0;
+		for (int i = 0; i < limit; i++){
+			if (i%3 == 0|| i%5 == 0){
+				sum +=i;
+			}
+		}
+		return sum;
+	}
+	
+	/*
+	 * Problem 2
+	 * Returns sum of all even fibonacci numbers whose value does not exceed maxFibValue
+	 */
+	public int sumOfEvenFibNumbers(int maxFibValue) {
+		int sum = 0;
+		int previousFib = 0;
+		int currentFib = 1;
+		int newFib = 0;
+		
+		while (currentFib < maxFibValue){
+			newFib = previousFib + currentFib;
+			if (newFib % 2 == 0){
+				sum += newFib;
+			}
+			previousFib = currentFib;
+			currentFib = newFib;
+		}		
+		return sum;
+	}
+	
+	/*
+	 *  Problem 3
+	 *  Returns the largest prime factor of the input number
+	 */
+	public int findLargestPrimeFactor(double number) {
+		for (double i = 2; i < Math.sqrt(number); i++){			
+			if (number % i == 0){
+				return findLargestPrimeFactor(number/i);
+			}
+		}
+		return (int) number;
+	}
+
+	/*
+	 * Problem 4
+	 * Returns the larges parlindrome product of two input-digit numbers
+	 * start from 99*99 move downards.
+	 * convert product to string and check if both ends are alike, move one step inwards in the string until
+	 * 	middle is hit.
+	 * 
+	 */
+	public int findLargestPalindromeProduct(int startFactorA) {
+		int startFactorB = startFactorA;		
+		int max = 0;
+		for (int i = 0; i < startFactorA; i++){
+			for (int j = 0; j < startFactorB; j++){				
+				int product = (startFactorA - i) * (startFactorB - j);
+				if (isPalindrome(Integer.toString(product)) && product > max){
+					max = product;
+				}			
+			}			
+		}
+		
+		return max;
+	}
+	
+	private boolean isPalindrome(String str){
+		for (int i = 0; i < str.length()/2; i++){		
+			if (str.charAt(i) != str.charAt(str.length()-1-i)){
+				return false;
+			}
+		}		
+		return true;
+	}
+
+
+}
