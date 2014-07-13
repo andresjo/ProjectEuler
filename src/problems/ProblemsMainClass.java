@@ -1,37 +1,39 @@
 package problems;
 
+import java.io.IOException;
+
 public class ProblemsMainClass {
 
 	public static void main(String[] args) {	
 		long startTime = System.nanoTime();
 		
-		System.out.println("Sum of multiples of 3 and 5 from 0 to 1000: " 
-				+ ProjectEuler.sumMultiplesOfThreeAndFive(1000));
+		System.out.println("Problem 1. Sum of multiples of 3 and 5 from 0 to 1000: " 
+				+ ProjectEuler.problem1_sumMultiplesOfThreeAndFive(1000));
 		
-		System.out.println("Sum of all even Fibonacci-numbers whose "
-				+ "value does not exceed four millions: " + ProjectEuler.sumOfEvenFibNumbers(4000000));
+		System.out.println("Problem 2. Sum of all even Fibonacci-numbers whose "
+				+ "value does not exceed four millions: " + ProjectEuler.problem2_sumOfEvenFibNumbers(4000000));
 		
-		System.out.println("Largest prime factor of 600851475143 is: " 
-				+ ProjectEuler.findLargestPrimeFactor(600851475143L));
+		System.out.println("Problem 3. Largest prime factor of 600851475143 is: " 
+				+ ProjectEuler.problem3_findLargestPrimeFactor(600851475143L));
 		
-		System.out.println("Largest palindrome product of two three-digit numbers is: " 
-				+ ProjectEuler.findLargestPalindromeProduct(999));
+		System.out.println("Problem 4. Largest palindrome product of two three-digit numbers is: " 
+				+ ProjectEuler.problem4_findLargestPalindromeProduct(999));
 
-		System.out.println("Smallest integer divisible by all numbers from 1 to 20 is: " 
-				+ ProjectEuler.leastCommonMultiple(20));
+		System.out.println("Problem 5. Smallest integer divisible by all numbers from 1 to 20 is: " 
+				+ ProjectEuler.problem5_leastCommonMultiple(20));
 		
-		System.out.println("The sum square difference of the first 100 natural numbers is: " + 
-				+ ProjectEuler.sumSquareDifference(100));
+		System.out.println("Problem 6. The sum square difference of the first 100 natural numbers is: " + 
+				+ ProjectEuler.problem6_sumSquareDifference(100));
 		
-		System.out.println("The 10 001st prime number is: " + 
-				+ ProjectEuler.nThPrime(10001));
+		System.out.println("Problem 7. The 10 001st prime number is: " + 
+				+ ProjectEuler.problem7_nThPrime(10001));
 		
 		String num = "7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428252483600823257530420752963450";
-		System.out.println("Largest product of 5 consecutive numbers: " + ProjectEuler.largestProductOfFiveConsecutiveNumbers(num));
+		System.out.println("Problem 8. Largest product of 5 consecutive numbers: " + ProjectEuler.problem8_largestProductOfFiveConsecutiveNumbers(num));
 		
-		System.out.println("Product of pytagorean triple whose sum = 1000: "+ ProjectEuler.pythagoreanTriple(1000));
+		System.out.println("Problem 9. Product of pytagorean triple whose sum = 1000: "+ ProjectEuler.problem9_pythagoreanTriple(1000));
 		
-		System.out.println("Sum of primes whose value does not exceed two million: " + ProjectEuler.sumOfPrimes(2000000));
+		System.out.println("Problem 10. Sum of primes whose value does not exceed two million: " + ProjectEuler.problem10_sumOfPrimes(2000000));
 				
 		int[][] grid = new int[][] {
 				{8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8}, 
@@ -56,9 +58,27 @@ public class ProblemsMainClass {
 				{1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48}
 				};
 		
-		System.out.println("Largest product of four adjecent numbers in the grid: "+ProjectEuler.largestProductInGrid(grid));
+		System.out.println("Problem 11. Largest product of four adjecent numbers in the grid: "+ProjectEuler.problem11_largestProductInGrid(grid));
 		
-		System.out.println("First term in the Fibonacci sequence to contain 1000 numbers is: "+ProjectEuler.firstFibonacciOfLenghtN(1000));
+		System.out.println("Problem 12. First triangle number with 500 divisors is: "+ProjectEuler.problem12_firstTriangularNumberWithMoreThanNDivisors(500));
+		
+		try {
+			System.out.println("Problem 13. First 10 digits of the sum of the 100 50-digit numbers: "+ProjectEuler.problem13_first10DigitsOfSumOfOneHundredFiftyDigitNumbers());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+		System.out.println("Problem 14. The number below 1 million with the longest Collatz Sequence  is: "+ProjectEuler.problem14_longestCollatzSequence(1000000));
+		
+		System.out.println("Problem 15. The number of Lattice Paths from the top-left to the bottom-right of a 20x20 grid is: "+ProjectEuler.problem15_latticePaths(20));
+		
+		System.out.println("Problem 16. The sum of the digits is: "+ProjectEuler.problem16_powerDigitSum(1000));
+		
+		System.out.println("Problem 17. Letters used when writing all nums between 1 and 1000 out in words: "+ProjectEuler.problem17_numberLetterCounts(1000));
+		
+		System.out.println("Problem 25. First term in the Fibonacci sequence to contain 1000 numbers is: "+ProjectEuler.problem25_firstFibonacciOfLenghtN(1000));
 		
 		long endTime = System.nanoTime();
 		long elapsed = endTime - startTime;

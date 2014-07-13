@@ -10,11 +10,7 @@ public class UtilitiesMainClass {
 		int a = fibGen.bottomUpFib(10);
 		System.out.println(a);
 		
-		/*
-		 * See output from primes generator
-		 */
-		PrimeNumbersGenerator primeGen = new PrimeNumbersGenerator();
-		Integer[] array = primeGen.generatePrimesWhoseValueDoesNotExceedN(100);
+		Integer[] array = PrimeNumbersGenerator.generatePrimesWhoseValueDoesNotExceedN(100);
 		String outStr = "Primes: ";
 		for (int number : array){
 			outStr += number+ " ";
