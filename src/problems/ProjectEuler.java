@@ -1,11 +1,6 @@
 package problems;
 
-import java.io.IOException;
 import java.math.BigInteger;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -376,17 +371,9 @@ public class ProjectEuler {
 	
 	/**
 	 * Problem 13, Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
-	 * @return Reads the numbers from file, sums them and returns the first 10 digits of the result.
+	 * @return Returns the first 10 digits of the sum of the numbers in numbers.
 	 */
-	public static String problem13_first10DigitsOfSumOfOneHundredFiftyDigitNumbers() throws IOException{
-		
-		List<String> numbers = new ArrayList<String>();
-		
-		try {
-			numbers = Files.readAllLines(Paths.get("src/inputFiles/problem13_numbers.txt"), Charset.forName("UTF-8"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public static String problem13_first10DigitsOfSumOfOneHundredFiftyDigitNumbers(List<String> numbers){
 		
 	    BigInteger sum = new BigInteger("0");
 	    
@@ -500,7 +487,7 @@ public class ProjectEuler {
 		return sum;
 	}
 
-
+	
 	private static String numberAsWords(int n) {
 		String numberAsWords = "";
 		
@@ -577,6 +564,43 @@ public class ProjectEuler {
 		
 		return numberAsWords;
 	}
+
+
+	public static int problem18_maximumPathSumOftriangle(List<Integer[]> triangle) {
+		for (int i = 1; i < triangle.size(); i++) {
+			Integer[] currentLevel = triangle.get(i);
+			Integer[] previousLevel = triangle.get(i-1);
+			
+			for (int j = 0; j < currentLevel.length; j++){
+				
+				if(j == 0){
+					currentLevel[j] += previousLevel[0];
+				}else if (j == currentLevel.length - 1) {
+					currentLevel[j] += previousLevel[previousLevel.length - 1];
+				} else {
+					currentLevel[j] = Math.max(currentLevel[j] + previousLevel[j-1], currentLevel[j] + previousLevel[j]);
+				}
+				
+			}
+			
+		}
+		
+		return getHighestValueFromBottomLevel(triangle);
+	}
+	
+	private static int getHighestValueFromBottomLevel(List<Integer[]> triangle){
+		int maxFound = 0;
+		Integer[] bottomLevel = triangle.get(triangle.size() - 1);
+		
+		for (Integer value : bottomLevel) {
+			if (value > maxFound){
+				maxFound = value;
+			}
+		}
+		
+		return maxFound;
+	}
+	
 	
 	
 

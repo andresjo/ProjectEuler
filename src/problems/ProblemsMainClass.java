@@ -1,10 +1,17 @@
 package problems;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
+import utilities.TriangleFileReader;
 
 public class ProblemsMainClass {
 
-	public static void main(String[] args) {	
+	public static void main(String[] args) throws NumberFormatException, IOException {	
 		long startTime = System.nanoTime();
 		
 		System.out.println("Problem 1. Sum of multiples of 3 and 5 from 0 to 1000: " 
@@ -61,15 +68,17 @@ public class ProblemsMainClass {
 		System.out.println("Problem 11. Largest product of four adjecent numbers in the grid: "+ProjectEuler.problem11_largestProductInGrid(grid));
 		
 		System.out.println("Problem 12. First triangle number with 500 divisors is: "+ProjectEuler.problem12_firstTriangularNumberWithMoreThanNDivisors(500));
+
 		
+		List<String> numbers = new ArrayList<String>();
 		try {
-			System.out.println("Problem 13. First 10 digits of the sum of the 100 50-digit numbers: "+ProjectEuler.problem13_first10DigitsOfSumOfOneHundredFiftyDigitNumbers());
+			numbers = Files.readAllLines(Paths.get("src/inputFiles/problem13_numbers"), Charset.forName("UTF-8"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		System.out.println( "Problem 13. First 10 digits of the sum of the 100 50-digit numbers: " + ProjectEuler.problem13_first10DigitsOfSumOfOneHundredFiftyDigitNumbers(numbers));
 
+		
 		System.out.println("Problem 14. The number below 1 million with the longest Collatz Sequence  is: "+ProjectEuler.problem14_longestCollatzSequence(1000000));
 		
 		System.out.println("Problem 15. The number of Lattice Paths from the top-left to the bottom-right of a 20x20 grid is: "+ProjectEuler.problem15_latticePaths(20));
@@ -78,7 +87,13 @@ public class ProblemsMainClass {
 		
 		System.out.println("Problem 17. Letters used when writing all nums between 1 and 1000 out in words: "+ProjectEuler.problem17_numberLetterCounts(1000));
 		
+		List<Integer[]> triangle = TriangleFileReader.getTriangleFromFile("src/inputFiles/problem18_triangle");
+		System.out.println("Problem 18. Maximum total from top to bottom of the triangle is: " + ProjectEuler.problem18_maximumPathSumOftriangle(triangle));
+		
 		System.out.println("Problem 25. First term in the Fibonacci sequence to contain 1000 numbers is: "+ProjectEuler.problem25_firstFibonacciOfLenghtN(1000));
+		
+		triangle = TriangleFileReader.getTriangleFromFile("src/inputFiles/problem67_triangle");
+		System.out.println("Problem 67. Maximum total from top to bottom of the triangle is: " + ProjectEuler.problem18_maximumPathSumOftriangle(triangle));
 		
 		long endTime = System.nanoTime();
 		long elapsed = endTime - startTime;

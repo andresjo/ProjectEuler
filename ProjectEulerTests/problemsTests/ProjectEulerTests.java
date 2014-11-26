@@ -3,10 +3,16 @@ package problemsTests;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
 import problems.ProjectEuler;
+import utilities.*;
 
 public class ProjectEulerTests {
 
@@ -124,51 +130,62 @@ public class ProjectEulerTests {
 	}
 	
 	@Test
-	public void problem13_first10DigitsOfSumOfOneHundredAndFiftyDigitNumberTest(){
+	public void problem13_first10DigitsOfSumOfOneHundredAndFiftyDigitNumberTest() throws IOException{
 		String expected = "5537376230";
 		String actual = null;
-		try {
-			actual = ProjectEuler.problem13_first10DigitsOfSumOfOneHundredFiftyDigitNumbers();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		List<String> numbers = new ArrayList<String>();
+		
+		numbers = Files.readAllLines(Paths.get("src/inputFiles/problem13_numbers"), Charset.forName("UTF-8"));
+		
+		actual = ProjectEuler.problem13_first10DigitsOfSumOfOneHundredFiftyDigitNumbers(numbers);
+		
 		assertEquals(expected, actual);		
 	}
 	
 	@Test
-	public void problem14_firstFbionacciOfLengthN_Input3_Returns12(){
+	public void problem25_firstFbionacciOfLengthN_Input3_Returns12(){
 		int expected = 12;
 		int actual = ProjectEuler.problem25_firstFibonacciOfLenghtN(3);
 		assertEquals(expected, actual);
 	}
 	
 	@Test
-	public void problem15_collatzSequenceLength_Input13_Returns10(){
+	public void problem14_collatzSequenceLength_Input13_Returns10(){
 		int expected = 10;
 		int actual = ProjectEuler.collatzSequenceLength(13);
 		assertEquals(expected, actual);		
 	}
 	
 	@Test
-	public void problem16_latticePathsInGrid_Input2_Returns6(){
+	public void problem15_latticePathsInGrid_Input2_Returns6(){
 		long expected = 6;
 		long actual = ProjectEuler.problem15_latticePaths(2);
 		assertEquals(expected, actual);		
 	}
 	
 	@Test
-	public void problem17_powerDigitSum_Input15_Returns26(){
+	public void problem16_powerDigitSum_Input15_Returns26(){
 		int expected = 26;
 		int actual = ProjectEuler.problem16_powerDigitSum(15);
 		assertEquals(expected, actual);		
 	}
 	
 	@Test
-	public void problem18_numberLetterCounts_Input5_Returns19(){
+	public void problem17_numberLetterCounts_Input5_Returns19(){
 		int expected = 19;
 		int actual = ProjectEuler.problem17_numberLetterCounts(5);
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void problem18_maximumPathSumOftriangle_Returns23() throws IOException{
+		List<Integer[]> triangle = TriangleFileReader.getTriangleFromFile("ProjectEulerTests/testInputFiles/problem18_testTriangle");
+		
+		int expected = 23;		
+		int actual = ProjectEuler.problem18_maximumPathSumOftriangle(triangle);
+		assertEquals(expected, actual);
+	}
+	
 	
 }
